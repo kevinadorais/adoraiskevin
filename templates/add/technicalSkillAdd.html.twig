@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add TechnicalSkill{% endblock %}
+
+{% block body %}
+<main>
+    <section>
+        <div class="block">
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+        <a href="{{path('webSkill')}}"><i class="fas fa-undo"></i></i></a>
+        </div>
+    </section>
+</main>
+{% endblock %}

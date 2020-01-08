@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <title>{% block title %}Portfolio{% endblock %}</title>
+        {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/css?family=Audiowide|Yeseva+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            {% if app.user %}
+            <div class="login"><a href="{{path('sec_logout')}}">Logout </a></div>
+            {% else %}
+            <div class="login"><a href="{{path('app_login')}}">Login</a></div>          
+            {% endif %}
+            <h1>Bienvenue Sur Mon Profil</h1>
+            <div id="cvDownload">
+                <a href="https://github.com/kevinadorais">Mon github.</a><br>
+                <a href="{{asset('img/CV_Kevin.pdf')}}" download="CV_Kevin.pdf"><i class="fas fa-file-download"></i> Télécharger le CV en PDF.<i class="fas fa-file-download"></i></a>
+            </div>
+            <h2>ADORAIS Kévin : Développeur Symfony  <span class="statut">DISPONIBLE</span></h2>
+            <h2 id="toggleButton"><i class="fas fa-bars"></i></h2>
+            <nav id="Navbar" class="hiddenNavbar">
+                {% if pageSelected == "info" %}
+                <a class="pageActif" href="{{path('information')}}">Ma Presentation</a>
+                {% else %}
+                <a href="{{path('information')}}">Ma Presentation</a>
+                {% endif %}
+                {% if pageSelected == "formation" %}
+                <a class="pageActif" href="{{path('formation')}}">Formations & Diplomes</a>
+                {% else %}
+                <a href="{{path('formation')}}">Formations & Diplomes</a>
+                {% endif %}
+                {% if pageSelected == "webSkill" %}
+                <a class="pageActif" href="{{path('webSkill')}}">Compétences Web & Techniques</a>
+                {% else %}
+                <a href="{{path('webSkill')}}">Compétences Web & Techniques</a>
+                {% endif %}
+                {% if pageSelected == "expWeb" %}
+                <a class="pageActif" href="{{path('experienceWeb',{'id':0})}}">Expériences Web</a>
+                {% else %}
+                <a href="{{path('experienceWeb',{'id':0})}}">Expériences Web</a>
+                {% endif %}
+                {% if pageSelected == "expPro" %}
+                <a class="pageActif" href="{{path('experiencePro')}}">Expériences Pros</a>
+                {% else %}
+                <a href="{{path('experiencePro')}}">Expériences Pros</a>
+                {% endif %}
+                <h2 id="secondToggleButton" class="hiddenNavbar"><i class="fas fa-bars"></i></h2>
+            </nav>
+        </header>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+        <script src="https://kit.fontawesome.com/0a8e0495cf.js"></script>
+        <script type="text/javascript" src="{{ asset("js/navbar.js") }}"></script>
+        {% endblock %}
+    </body>
+</html>

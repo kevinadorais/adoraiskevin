@@ -1,0 +1,7 @@
+index:
+   path: /
+   controller: App\Controller\PortfolioController::index
+
+sec_logout:
+    path: /logout
+    methods: GET
