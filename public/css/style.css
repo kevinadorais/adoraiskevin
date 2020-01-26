@@ -189,6 +189,11 @@ ul{
 	margin: 1rem;
 	box-shadow: 3px 5px 3px black;
 }
+.linkToProject{
+	display: block;
+	font-weight: bold;
+	color: red;
+}
 
 @keyframes BlinkAnim {
   0%   { opacity: 1; }
