@@ -19,7 +19,7 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {   
-        $pageSelected = "Login";
+        $pageSelected = "login";
         // if ($this->getUser()) {
         //    $this->redirectToRoute('target_path');
         // }

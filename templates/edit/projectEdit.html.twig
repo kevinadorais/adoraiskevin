@@ -2,12 +2,12 @@
 {% block body %}
 <main>
     <section>
-        <div>
+        {% spaceless %}
         {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
         {{ form_widget(form) }}
         {{ form_end(form) }}
-        <a href="{{path('presentation')}}"><i class="fas fa-undo"></i></i></a>
-        </div>
+        <a href="{{path('webSkills', {'id':0} )}}"><i class="fas fa-undo"></i></i></a>
+        {% endspaceless %}
     </section>
 </main>
 {% endblock %}

@@ -1,0 +1,84 @@
+@media screen and (max-width: 650px) {
+    body{
+        font-size: 1rem;
+    }
+    nav a{
+        font-size: 1.2rem;
+    }
+    section a{
+        font-size: 1.2rem;
+    }
+    section li a{
+        font-size: 1.2rem;
+    }
+    #profilePicture{
+        display: block;
+        margin: auto;
+        float: none;
+    }
+    .screenright{
+        float: none;
+        width: 90%;
+        height: 45%;
+        margin: 2rem;
+    }
+}
+@media screen and (max-width: 500px) {
+    body{
+    z-index: 1;
+    padding-bottom: 4rem;
+    }
+    .hidden{
+        display: none;
+    }
+    nav a{
+        font-size: 1.8rem;
+    }
+    section h2{
+        margin-left: 20%;
+    }
+    .flex{
+        flex-direction: column;
+    }
+    .flex div{
+        width: 100%;
+    }
+    nav{
+        position: fixed;
+        background-color: rgb(40, 40, 40);
+        bottom: 0px;
+        height: 4rem;
+        width: 100%;
+        margin-left: -0.5rem;
+        padding-left: 1rem;
+        z-index: 2;
+    }
+    ul{
+        margin: 0rem;
+        padding: 0rem;
+    }
+    .quoteButton{
+        margin-top: 2rem;
+        padding: 0.5rem;
+    }
+}
+@media screen and (max-width: 400px) {
+    body{
+        font-size: 0.8rem;
+    }
+    section{
+        padding: 0.5rem;
+    }
+    section a{
+        font-size: 1rem;
+    }
+    section li a{
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 270px) {
+    section{
+        padding: 0rem;
+        border: none;
+    }
+}

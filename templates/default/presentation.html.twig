@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}adoraiskevin.best CV dev web fullstack PHP Symfony JS presentation{% endblock %}
+{% block body %}
+    <main class="grid">
+        <section>
+            <h2>Ma Présentation. {% if app.user %}<a href="{{path('presentationEdit',{'id':presentation.0.id})}}"><i class="far fa-edit"></i></a>{% endif %}</h2>
+            <img id="profilePicture" src="{{asset('img/photo.jpg')}}" alt="Adorais Kévin">
+            <p>{{presentation.0.presentation}}</p>
+            <ul>
+                <li>Nom : {{presentation.0.firstName}}</li>
+                <li>Prénom : {{presentation.0.lastName}}</li>
+                <li>Age : {{age}}ans</li>
+                <li>Permis : {{presentation.0.permis}}</li>
+                <li>Localisation : {{presentation.0.city}}</li>
+            </ul>
+            <a href="https://github.com/kevinadorais"><i class="fab fa-github"></i> Mon github <i class="fab fa-github"></i></a><br>
+            <a href="https://www.linkedin.com/in/kévin-adorais-60b007188"><i class="fab fa-linkedin"></i> Mon LinkedIn <i class="fab fa-linkedin"></i></a><br>
+            <h2>Mes Hobbies. {% if app.user %}<a href="{{path('hobbieAdd')}}"><i class="far fa-plus-square"></i></a>{% endif %}</h2>
+            {% for hobbies in hobbies %}
+                {{hobbies.name}} {% if app.user %}<a href="{{path('hobbieRemove',{'id':hobbies.id})}}"><i class="far fa-minus-square"></i></a>{% endif %}.
+            {% endfor %}
+            <h2>Mes Langues. </h2>
+            <div class="flex">
+                {% for languages in languages %}
+                    <div>
+                        <img class="languageFlag" src="{{asset(languages.flag)}}" alt="{{languages.alt}}"/><br>
+                        {{languages.level}}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock %}

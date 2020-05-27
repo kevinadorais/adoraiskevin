@@ -31,6 +31,11 @@ class Language
      */
     private $level;
 
+    /**
+     * @ORM\Column(type="string", length=155, nullable=true)
+     */
+    private $alt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +73,18 @@ class Language
     public function setLevel(string $level): self
     {
         $this->level = $level;
+
+        return $this;
+    }
+
+    public function getAlt(): ?string
+    {
+        return $this->alt;
+    }
+
+    public function setAlt(?string $alt): self
+    {
+        $this->alt = $alt;
 
         return $this;
     }

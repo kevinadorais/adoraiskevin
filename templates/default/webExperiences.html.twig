@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block title %}CV dev web fullstack PHP Symfony JS competence web adoraiskevin.best{% endblock %}
+{% block body %}
+    <main class="grid">
+        <section>
+            <h2>Mes Technos. {% if app.user %}<a href="{{path('technoAdd', {'projectId':projectSelected} )}}"><i class="far fa-plus-square"></i></a>{% endif %}</h2>
+            <div class="flexwrapContainer">
+                {% for technos in technos %}
+                    <div>
+                        <td><img class="techno" src="{{asset(technos.logo)}}" alt="{{technos.alt}}"></td>
+                        <td><img class="rating" src="{{asset(technos.level)}}" alt="level"></td>
+                        {% if app.user %}
+                            <a href="{{path('technoEdit',{'projectId':projectSelected, 'id':technos.id})}}"><i class="far fa-edit"></i></a>
+                            <a href="{{path('technoRemove',{'projectId':projectSelected, 'id':technos.id})}}"><i class="far fa-minus-square"></i></a>
+                        {% endif %}
+                    </div>
+                {% endfor %}           
+            </div>
+            <h2>Mes Compétences Techniques. {% if app.user %}<a href="{{path('skillAdd', {'projectId':projectSelected} )}}"><i class="far fa-plus-square"></i></a>{% endif %}</h2>
+                {% for skills in skills %}
+                    {{skills.name}} {% if app.user %}<a href="{{path('skillRemove',{'projectId':projectSelected, 'id':skills.id})}}"><i class="far fa-minus-square"></i></a>{% endif %}. 
+                {% endfor %}
+            <h2>Projets Web. {% if app.user %}<a href="{{path('projectAdd', {'projectId':projectSelected} )}}"><i class="far fa-plus-square"></i></a>{% endif %}</h2>
+            <div class="miniBlock">
+                <h3>Selectionnez le projet que vous voulez voir.</h3>
+                {% for projects in projects %}
+                    {% if projectSelected == projects.id %}
+                        <a class="activPage" href="{{path('webSkills',{'id':projects.id})}}">{{projects.name}}</a>
+                    {% else %}
+                        <a href="{{path('webSkills',{'id':projects.id})}}">{{projects.name}}</a>
+                    {% endif %}
+                {% endfor %}
+                {% for projects in projects %}
+                    {% if projectSelected == projects.id %}
+                        <h3>{{projects.name}} 
+                            {% if app.user %}
+                                <a href="{{path('projectEdit',{'projectId':projectSelected, 'id':projects.id})}}"><i class="far fa-edit"></i></a>
+                                <a href="{{path('projectRemove',{'projectId':projectSelected, 'id':projects.id})}}"><i class="far fa-minus-square"></i></a>
+                            {% endif %}
+                        </h3>
+                        <video controls src="{{asset(projects.videoLink)}}" width="75%" height="50%">Video du projet Advert.</video>
+                        <h3>Description</h3>
+                        <p>{{projects.Description}}</p>
+                        <h3>Technologies utilisées.</h3>
+                        {% for projectTechnos in projects.technosUse %}
+                            <img class="techno" src="{{asset(projectTechnos.logo)}}">
+                        {% endfor %}
+                        <h3>Techniques utilisées.</h3>
+                        {% for projectSkills in projects.skillUse %}
+                            {{projectSkills.name}}.
+                        {% endfor %}
+                        <h3>Lien vers le projet.</h3>
+                        {{projects.website}}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock %}

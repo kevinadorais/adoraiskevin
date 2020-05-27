@@ -11,6 +11,7 @@ use App\Form\ExperienceType;
 use App\Form\WebSkillType;
 use App\Form\TechnicalSkillType;
 use App\Form\FormationType;
+use App\Form\ProjectsType;
 use App\Entity\Info;
 use App\Entity\Language;
 use App\Entity\Hobbies;
@@ -19,15 +20,16 @@ use App\Entity\WebSkill;
 use App\Entity\TechnicalSkill;
 use App\Entity\User;
 use App\Entity\Formation;
+use App\Entity\Projects;
 
 class AdminController extends AbstractController
 {
     /**
-     * @Route("admin/infoedit/{id}", name="infoedit")
+     * @Route("admin/presentationEdit/{id}", name="presentationEdit")
      */
-    public function infoEdit($id, Request $request)
+    public function presentationEdit($id, Request $request)
     {   
-        $pageSelected = "info";
+        $pageSelected = "presentation";
 
         $entityManager = $this->getDoctrine()->getManager();
         $task = $entityManager->getRepository(Info::class)->find($id);
@@ -40,21 +42,21 @@ class AdminController extends AbstractController
             $entityManager->persist($task);
             $entityManager->flush();
 
-            return $this->redirectToRoute('information');
+            return $this->redirectToRoute('presentation');
         }
-        return $this->render('edit/infoEdit.html.twig', [
+        return $this->render('edit/presentationEdit.html.twig', [
             'form'=>$form->createView(),
-            'info'=>$task,
+            'presentation'=>$task,
             'pageSelected' => $pageSelected,
         ]);
     }
 
     /**
-     * @Route("admin/hobbieadd", name="hobbieadd")
+     * @Route("admin/hobbieAdd", name="hobbieAdd")
      */
     public function hobbieAdd(Request $request)
     {   
-        $pageSelected = "info";
+        $pageSelected = "presentation";
 
         $task = new Hobbies();
         $form = $this->createForm(HobbiesType::class , $task);   
@@ -67,7 +69,7 @@ class AdminController extends AbstractController
             $entityManager->persist($task);
             $entityManager->flush();
 
-            return $this->redirectToRoute('information');
+            return $this->redirectToRoute('presentation');
         }
         return $this->render('add/hobbieAdd.html.twig', [
             'form' => $form->createView(),
@@ -76,7 +78,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("admin/hobbieremove/{id}", name="hobbieremove")
+     * @Route("admin/hobbieRemove/{id}", name="hobbieRemove")
      */
     public function hobbieRemove($id)
     {          
@@ -86,162 +88,15 @@ class AdminController extends AbstractController
         $em->remove($hobbies);
         $em->flush();
 
-        return $this->redirectToRoute("information");
+        return $this->redirectToRoute("presentation");
     }
 
     /**
-     * @Route("admin/expadd", name="experienceadd")
-     */
-    public function experienceAdd(Request $request)
-    {
-        $pageSelected = "expPro";
-
-        $task = new Experience();
-        $form = $this->createForm(ExperienceType::class , $task);   
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $task = $form->getData();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($task);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('experience');
-        }
-        return $this->render('add/experienceAdd.html.twig', [
-            'form' => $form->createView(),
-            'pageSelected' => $pageSelected,
-        ]);
-    }
-
-    /**
-     * @Route("admin/expremove/{id}", name="experienceremove")
-     */
-    public function experienceRemove($id)
-    {          
-        $em = $this->getDoctrine()->getManager();
-        $experience = $em->getRepository(Experience::class)->find($id);
-
-        $em->remove($experience);
-        $em->flush();
-
-        return $this->redirectToRoute("experience");
-    }
-
-    /**
-     * @Route("admin/webskilladd", name="webskilladd")
-     */
-    public function webSkillAdd(Request $request)
-    {   
-        $pageSelected = "webSkill";
-
-        $task = new WebSkill();
-        $form = $this->createForm(WebSkillType::class , $task);   
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $task = $form->getData();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($task);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('webSkill');
-        }
-        return $this->render('add/webSkillAdd.html.twig', [
-            'form' => $form->createView(),
-            'pageSelected' => $pageSelected,
-        ]);
-    }
-
-    /**
-     * @Route("admin/webskilledit/{id}", name="webskilledit")
-     */
-    public function webSkillEdit($id, Request $request)
-    {   
-        $pageSelected = "webSkill";
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $task = $entityManager->getRepository(WebSkill::class)->find($id);
-        $form = $this->createForm(WebSkillType::class , $task);            
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $task = $form->getData();           
-            $entityManager->persist($task);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('webSkill');
-        }
-        return $this->render('edit/webSkillEdit.html.twig', [
-            'form'=>$form->createView(),
-            'webSkill'=>$task,
-            'pageSelected' => $pageSelected,
-        ]);
-    }
-
-    /**
-     * @Route("admin/webskillremove/{id}", name="webskillremove")
-     */
-    public function webSkillRemove($id)
-    {          
-        $em = $this->getDoctrine()->getManager();
-        $webSkill = $em->getRepository(WebSkill::class)->find($id);
-
-        $em->remove($webSkill);
-        $em->flush();
-
-        return $this->redirectToRoute("webSkill");
-    }
-
-    /**
-     * @Route("admin/techskilladd", name="technicalSkillAdd")
-     */
-    public function technicalSkillAdd(Request $request)
-    {   
-        $pageSelected = "webSkill";
-
-        $task = new TechnicalSkill();
-        $form = $this->createForm(TechnicalSkillType::class , $task);   
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $task = $form->getData();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($task);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('webSkill');
-        }
-        return $this->render('add/technicalSkillAdd.html.twig', [
-            'form' => $form->createView(),
-            'pageSelected' => $pageSelected,
-        ]);
-    }
-
-    /**
-     * @Route("admin/techskillremove/{id}", name="technicalSkillRemove")
-     */
-    public function technicalSkillRemove($id)
-    {          
-        $em = $this->getDoctrine()->getManager();
-        $technicalSkill = $em->getRepository(TechnicalSkill::class)->find($id);
-
-        $em->remove($technicalSkill);
-        $em->flush();
-
-        return $this->redirectToRoute("webSkill");
-    }
-
-    /**
-     * @Route("admin/formationadd", name="formationadd")
+     * @Route("admin/formationAdd", name="formationAdd")
      */
     public function formationAdd(Request $request)
     {
-        $pageSelected = "formation";
+        $pageSelected = "proJourney";
 
         $task = new Formation();
         $form = $this->createForm(FormationType::class , $task);   
@@ -254,7 +109,7 @@ class AdminController extends AbstractController
             $entityManager->persist($task);
             $entityManager->flush();
 
-            return $this->redirectToRoute('formation');
+            return $this->redirectToRoute('proJourney');
         }
         return $this->render('add/formationAdd.html.twig', [
             'form' => $form->createView(),
@@ -263,7 +118,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("admin/formationremove/{id}", name="formationremove")
+     * @Route("admin/formationRemove/{id}", name="formationRemove")
      */
     public function formationRemove($id)
     {          
@@ -273,6 +128,220 @@ class AdminController extends AbstractController
         $em->remove($formation);
         $em->flush();
 
-        return $this->redirectToRoute("formation");
+        return $this->redirectToRoute("proJourney");
+    }
+
+    /**
+     * @Route("admin/proExpAdd", name="proExpAdd")
+     */
+    public function proExpAdd(Request $request)
+    {
+        $pageSelected = "proJourney";
+
+        $task = new Experience();
+        $form = $this->createForm(ExperienceType::class , $task);   
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $task = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($task);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('proJourney');
+        }
+        return $this->render('add/proExpAdd.html.twig', [
+            'form' => $form->createView(),
+            'pageSelected' => $pageSelected,
+        ]);
+    }
+
+    /**
+     * @Route("admin/proExpRemove/{id}", name="proExpRemove")
+     */
+    public function proExpRemove($id)
+    {          
+        $em = $this->getDoctrine()->getManager();
+        $experience = $em->getRepository(Experience::class)->find($id);
+
+        $em->remove($experience);
+        $em->flush();
+
+        return $this->redirectToRoute("proJourney");
+    }
+
+    /**
+     * @Route("admin/technoAdd/{projectId}", name="technoAdd")
+     */
+    public function technoAdd(Request $request, $projectId)
+    {   
+        $pageSelected = "webSkills";
+
+        $task = new WebSkill();
+        $form = $this->createForm(WebSkillType::class , $task);   
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $task = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($task);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('webSkills', ['id' => $projectId]);
+        }
+        return $this->render('add/technoAdd.html.twig', [
+            'form' => $form->createView(),
+            'pageSelected' => $pageSelected,
+        ]);
+    }
+
+    /**
+     * @Route("admin/technoEdit/{projectId}/{id}", name="technoEdit")
+     */
+    public function technoEdit($projectId, $id, Request $request)
+    {   
+        $pageSelected = "webSkills";
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $task = $entityManager->getRepository(WebSkill::class)->find($id);
+        $form = $this->createForm(WebSkillType::class , $task);            
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $task = $form->getData();           
+            $entityManager->persist($task);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('webSkills', ['id' => $projectId]);
+        }
+        return $this->render('edit/technoEdit.html.twig', [
+            'form'=>$form->createView(),
+            'webSkill'=>$task,
+            'pageSelected' => $pageSelected,
+        ]);
+    }
+
+    /**
+     * @Route("admin/technoRemove/{projectId}/{id}", name="technoRemove")
+     */
+    public function technoRemove($projectId, $id)
+    {          
+        $em = $this->getDoctrine()->getManager();
+        $webSkill = $em->getRepository(WebSkill::class)->find($id);
+
+        $em->remove($webSkill);
+        $em->flush();
+
+        return $this->redirectToRoute('webSkills', ['id' => $projectId]);
+    }
+
+    /**
+     * @Route("admin/skillAdd/{projectId}", name="skillAdd")
+     */
+    public function skillAdd(Request $request, $projectId)
+    {   
+        $pageSelected = "webSkills";
+
+        $task = new TechnicalSkill();
+        $form = $this->createForm(TechnicalSkillType::class , $task);   
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $task = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($task);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('webSkills', ['id' => $projectId]);
+        }
+        return $this->render('add/skillAdd.html.twig', [
+            'form' => $form->createView(),
+            'pageSelected' => $pageSelected,
+        ]);
+    }
+
+    /**
+     * @Route("admin/skillRemove/{projectId}/{id}", name="skillRemove")
+     */
+    public function skillRemove($projectId, $id)
+    {          
+        $em = $this->getDoctrine()->getManager();
+        $technicalSkill = $em->getRepository(TechnicalSkill::class)->find($id);
+
+        $em->remove($technicalSkill);
+        $em->flush();
+
+        return $this->redirectToRoute("webSkills", ['id' => $projectId]);
+    }
+
+    /**
+     * @Route("admin/projectAdd/{projectId}", name="projectAdd")
+     */
+    public function projectAdd(Request $request, $projectId)
+    {   
+        $pageSelected = "webSkills";
+
+        $task = new projects();
+        $form = $this->createForm(ProjectsType::class , $task);   
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $task = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($task);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('webSkills', ['id' => $projectId]);
+        }
+        return $this->render('add/projectAdd.html.twig', [
+            'form' => $form->createView(),
+            'pageSelected' => $pageSelected,
+        ]);
+    }
+
+    /**
+     * @Route("admin/projectEdit/{projectId}/{id}", name="projectEdit")
+     */
+    public function projectEdit($projectId, $id, Request $request)
+    {   
+        $pageSelected = "webSkills";
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $task = $entityManager->getRepository(Projects::class)->find($id);
+        $form = $this->createForm(ProjectsType::class , $task);            
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $task = $form->getData();           
+            $entityManager->persist($task);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('webSkills', ['id' => $projectId]);
+        }
+        return $this->render('edit/technoEdit.html.twig', [
+            'form'=>$form->createView(),
+            'project'=>$task,
+            'pageSelected' => $pageSelected,
+        ]);
+    }
+
+    /**
+     * @Route("admin/projectRemove/{projectId}/{id}", name="projectRemove")
+     */
+    public function projectRemove($projectId, $id)
+    {          
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository(projects::class)->find($id);
+
+        $em->remove($project);
+        $em->flush();
+
+        return $this->redirectToRoute("webSkills", ['id' => $projectId]);
     }
 }

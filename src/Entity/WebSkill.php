@@ -31,6 +31,11 @@ class WebSkill
      */
     private $logo;
 
+    /**
+     * @ORM\Column(type="string", length=155, nullable=true)
+     */
+    private $alt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +73,18 @@ class WebSkill
     public function setLogo(?string $logo): self
     {
         $this->logo = $logo;
+
+        return $this;
+    }
+
+    public function getAlt(): ?string
+    {
+        return $this->alt;
+    }
+
+    public function setAlt(?string $alt): self
+    {
+        $this->alt = $alt;
 
         return $this;
     }

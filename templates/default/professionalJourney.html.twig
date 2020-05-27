@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}CV dev web fullstack PHP Symfony JS parcour professionel adoraiskevin.best{% endblock %}
+{% block body %}
+    <main class="grid">
+        <section>
+            <h2>Mes Formations. {% if app.user %}<a href="{{path('formationAdd')}}"><i class="far fa-plus-square"></i></a>{% endif %}</h2>
+            {% for formations in formations %}
+                <div class="miniBlock">
+                    <h3>{{formations.certification}} {% if app.user %}<a href="{{path('formationRemove',{'id':formations.id})}}"><i class="far fa-minus-square"></i></a>{% endif %}</h3>
+                    <p>{{formations.localisation}} : {{formations.description}} de {{formations.period}}</p>
+                </div>
+            {% endfor %}
+            <h2>Mes Expériences Pro. {% if app.user %}<a href="{{path('proExpAdd')}}"><i class="far fa-plus-square"></i></a>{% endif %}</h2>
+            {% for proExps in proExps %}
+                <div class="miniBlock">
+                    <h3>{{proExps.title}} {% if app.user %}<a href="{{path('proExpRemove',{'id':proExps.id})}}"><i class="far fa-minus-square"></i></a>{% endif %}</h3>
+                    <p>{{proExps.description}}</p>
+                    <p>de {{proExps.startDate}} à {{proExps.endDate}}</p>
+                </div>
+            {% endfor %}
+        </section>
+    </main>
+{% endblock %}

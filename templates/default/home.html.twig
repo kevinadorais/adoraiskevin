@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block title %}adoraiskevin.best CV dev web fullstack PHP Symfony JS presentation{% endblock %}
+{% block body %}
+    <main class="grid">
+        <section>
+            <h2>Freelance : Dev fullstack</h2>
+
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+
+            <h3>Création de site sur mesure (sur DEVIS)</h3>
+            <ul>
+                <img class="screenright" src="{{asset('img/home/nbaInfos.jpg')}}" alt="screen-nbaInfos"/>
+                <li>Je suis Kévin ADORAIS, <strong>Développeur Web FullStack</strong>, spécialisé en PHP SYMPHONY JS</li>
+                <li>Je suis en mesure de <strong>créer votre site sur mesure</strong> …</li>
+                <li>Créativité et imagination à votre service …</li>
+                <li>Et professionnalisme …</li>
+                <li>Doté d’une excellente maîtrise du <strong>HTML</strong> et du <strong>CSS</strong>, je peux adapter votre site à votre image.</li>
+                <li>Je maîtrise parfaitement le  <strong>JS</strong>, pour des fonctionnalités, animations …</li>
+                <li>Et le <strong>PHP</strong>, pour des fonctionnalités, la gestion de base de données, les formulaires …</li>
+                <li>Quant aux sites e-commerce : En option, possibilité de passer par un CMS, tel que <strong>SHOPIFY</strong> ou <strong>PRESTASHOP</strong>, permettant de gagner en vitesse et en prix.</li>
+                <li>Grâce à ma Maîtrise de <strong>SYMFONY</strong> (framework N°1 dans le monde !!!) vous gagnerez en temps et en sécurité !</li>
+                <li>Ma connaissance de <strong>DOCTRINE</strong> et <strong>MySQL</strong> me permettra de vous offrir la possibilité d’interagir et de gérer votre base de données, par vous-même : la lecture, l'ajout, la suppression et l’édition de vos données.</li>
+                <li>Le <strong>Responsive</strong> adaptera la présentation de votre site sur l’appareil utilisé (ordinateur, tablette, mobile).</li>
+                <img class="screenright" src="{{asset('img/home/Advert.jpg')}}" alt="screen-Advert"/>
+                <li>Grâce à la création, éventuelle, d’une <strong>PWA (Progressive Web App)</strong>, votre site fonctionnera sur tout périphérique en intégrant les fonctionnalités disponibles du navigateur ou de l'appareil utilisé.  Elle répondra aux problématiques de sécurité des échanges entre les utilisateurs et les sites, incluant la possibilité d’y ajouter une connexion hors ligne, des notifications ou géolocalisations.</li>
+                <li>Mes connaissances en <strong>SEO (référencement)</strong> vous permettront d’accéder à un meilleur référencement sur Google et Yahoo.</li>
+                <li>Pour un site simple vitrine ou autre, rapide et efficace : baisse de la taille de l’image sans perdre la qualité, acteur majeur pour gagner en vitesse et autres techniques…</li>
+                <li>Je suis, aussi, en mesure d’utiliser les <strong>API ou Interfaces externes</strong>.</li>
+            </ul>
+            <h3>Démarche à suivre :</h3>
+            <p>Pour rendre le travail plus efficace ! préparer un cahier des charges.</p>
+            <ul>
+                <li>Choisir 2 ou 3 couleurs sur <a href=" https://htmlcolorcodes.com/fr/selecteur-de-couleur/">htmlcolorcodes</a>. Prière de noter les codes couleur (ex : #2E098F)</li>
+                <li>Choisir 1 ou 2 polices d’écriture : vous pouvez en trouver sur <a href="https://fonts.google.com/">Google Fonts</a>.</li>
+                <li>Préparer un croquis du visuel de votre futur site, ainsi il sera adapté à vos souhaits…</li>
+                <li>Noter les pages disponibles dans la navigation et leurs détails.</li>
+                <li>Rassembler les textes et les images apparentes sur votre site.</li>
+                <li>Annexer le LOGO si vous en avez un, obligatoire si vous souhaitez une PWA.</li>
+                <li>Signaler toutes les fonctionnalités nécessaires sur votre site …</li>
+            </ul>
+            <p>Pour de plus amples informations, ou devis, vous pouvez me contacter par Téléphone ( 06-21-07-01-22 ) ou via le formulaire ci dessous :</p>
+            <a href="{{path('quote')}}" class="quoteButton">formulaire</a>
+        </section>
+    </main>
+{% endblock %}

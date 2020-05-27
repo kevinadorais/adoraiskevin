@@ -2,12 +2,10 @@
 {% block body %}
     <main>
         <section>
-            <div>
             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
             {{ form_widget(form) }}
             {{ form_end(form) }}
-            <a href="{{path('proJourney')}}"><i class="fas fa-undo"></i></i></a>
-            </div>
+            <a href="{{path('presentation')}}"><i class="fas fa-undo"></i></i></a>
         </section>
     </main>
 {% endblock %}

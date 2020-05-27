@@ -1,6 +1,6 @@
 index:
    path: /
-   controller: App\Controller\PortfolioController::index
+   controller: App\Controller\PortfolioController::home
 
 sec_logout:
     path: /logout
