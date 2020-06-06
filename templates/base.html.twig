@@ -5,8 +5,11 @@
         <meta name="viewport" content="width=device-width, user-scalable=yes">
         <meta name="description" content="Site réalisé par Adorais Kévin, développeur fullstack avec en technos principales PHP, Symfony, JS ...
         télécharger son CV de développeur. Accéder a son Github, Linkedin, ses compétences web ainsi qu'à son parcour proféssionnel.">
+        <meta name="theme-color" content="rgb(0, 105, 240)"/>
         <title>{% block title %}{% endblock %}</title>
         {% block stylesheets %}
+        <link rel="icon" href="{{asset('logo.png')}}" type="image/x-icon">
+        <link rel="manifest" href="{{asset('manifest.json')}}">
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Noto+Sans+KR&family=Odibee+Sans&family=Trade+Winds&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('css/mediaqueries.css')}}">

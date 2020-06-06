@@ -18,8 +18,8 @@ class SendQuote extends AbstractController{
     public function sendQuoteMail($quote){
         
         $message = (new \Swift_Message('Demande de devis : '. $quote->getName()))
-            ->setFrom($quote->getEmail())
-            ->setTo('kevin.adorais@gmail.com')
+            ->setFrom("noreply.websitequote@gmail.com")
+            ->setTo("kevin.adorais@gmail.com")
             ->setReplyTo($quote->getEmail())
             ->setBody(
                 $this->renderView('emails/websiteQuoteMail.html.twig',
