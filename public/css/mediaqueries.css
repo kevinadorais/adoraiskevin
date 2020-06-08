@@ -45,7 +45,7 @@
     }
     nav{
         position: fixed;
-        background-color: rgb(40, 40, 40);
+        background-color: rgba(40, 40, 40, 0.7);
         bottom: 0px;
         height: 4rem;
         width: 100%;

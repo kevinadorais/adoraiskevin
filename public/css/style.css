@@ -19,8 +19,12 @@ header a{
     font-size: 1.8rem;
     color: rgb(230, 230, 220);
 }
+.BlueLetter{
+    color: rgb(0, 105, 240);
+    font-weight: bold;
+}
 header a:hover{	
-    color: rgb(200, 80, 0);
+    color: rgb(0, 105, 240);
 }
 nav ul{
 	display: flex;
@@ -39,10 +43,10 @@ nav a{
     font-family: 'Odibee Sans', cursive;
 }
 .activPage{
-	color: rgb(200, 80, 0);
+	color: rgb(0, 105, 240);
 }
 nav a:hover{
-    color: rgb(200, 80, 0);
+    color: rgb(0, 105, 240);
 }
 section{
     margin: 1rem;
@@ -67,18 +71,18 @@ section h3{
 section a{
     text-decoration: none;
     font-size: 1.8rem;
-    color: rgb(200, 80, 0);
+    color: rgb(0, 105, 240);
 	margin: 2rem;
 	margin-top: 1rem;
 }
 section a:hover{
-    color: rgb(200, 80, 0);
+    color: rgb(0, 105, 240);
     font-weight: bold;
 }
 section li a{
     margin: 0rem;
     font-size: 1.4rem;
-    color: rgb(200, 80, 0);
+    color: rgb(0, 105, 240);
 }
 section li a:hover{
     font-weight: bold;
@@ -93,12 +97,12 @@ section li a:hover{
     transform: scale(1.8);
 }
 .quoteButton{
-    border: 1px solid rgb(200, 80, 0);
+    border: 1px solid rgb(0, 105, 240);
     padding: 1rem;
 }
 .quoteButton:hover{
     border: 1px solid black;
-    background-color: rgb(200, 80, 0);
+    background-color: rgb(0, 105, 240);
     color: black;
     padding: 1rem;
 }
